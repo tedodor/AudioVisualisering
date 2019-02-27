@@ -5,7 +5,8 @@ import time
 import random
 from pydub import AudioSegment
 
-N_OF_STREAMS = 10
+N_OF_STREAMS = 100
+CLIP_SIZE = 1
 
 p = pyaudio.PyAudio()
 
@@ -29,7 +30,7 @@ class Player:
     def start_streams(self):
         for stream in self.streams:
             stream.start_stream()
-            time.sleep(0.1)
+            time.sleep(CLIP_SIZE/N_OF_STREAMS)
 
     def stop_streams(self):
         for stream in self.streams:
