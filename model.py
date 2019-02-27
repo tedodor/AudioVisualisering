@@ -1,7 +1,7 @@
 import math, random, time
 import audio, view
 
-THRESH = 100
+THRESH = 25
 
 class Point:
     def __init__(self, x, y, clip):
@@ -19,7 +19,6 @@ class Model:
         self.v = view.View()
         self.fill(clips)
         self.draw()
-        time.sleep(10)
         self.player = audio.Player(self.get_clips)
 
     def fill(self, clips):

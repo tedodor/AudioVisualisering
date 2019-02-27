@@ -9,6 +9,8 @@ fr = wf.getframerate()
 p = pyaudio.PyAudio()
 
 print(wf.getsampwidth())
+print(wf.getframerate())
+print(wf.getnchannels())
 data = []
 d = wf.readframes(CHUNK)
 while len(d) > 0:

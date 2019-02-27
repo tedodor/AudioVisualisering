@@ -9,7 +9,7 @@ N_OF_STREAMS = 10
 
 p = pyaudio.PyAudio()
 
-audio_params = {'format': p.get_format_from_width(2), 'channels':2, 'rate':8000, 'frames_per_buffer': 8000, 'output':True, 'start': False}
+audio_params = {'format': p.get_format_from_width(2), 'channels':1, 'rate':8000, 'frames_per_buffer': 8000, 'output':True, 'start': False}
 
 class Player:
     streams = []
@@ -37,7 +37,7 @@ class Player:
             
     def callback(self, in_data, frame_count, time_info, status):
         clips = [clip for clip in self.get_clips()]
-        print(1)
-#        if not clips:
-        return (bytes([0 for x in range(8000)]), pyaudio.paContinue)
+        print(frame_count)
+        if not clips:
+            return (bytes([0 for x in range(8000)]), pyaudio.paContinue)
         return (random.choice(clips), pyaudio.paContinue)
