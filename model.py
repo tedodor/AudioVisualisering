@@ -16,7 +16,7 @@ class Point:
 class Model:
     points = []
     def __init__(self, clips1, clips2):
-        self.v = view.View()
+        self.v = view.View(THRESH)
         self.fill(clips1, 0)
         self.fill(clips2, 250)
         self.draw()

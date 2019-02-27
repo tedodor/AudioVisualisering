@@ -3,9 +3,8 @@ import wave
 import sys
 import time
 import random
-from pydub import AudioSegment
 
-N_OF_STREAMS = 100
+N_OF_STREAMS = 10
 CLIP_SIZE = 1
 
 p = pyaudio.PyAudio()
@@ -40,5 +39,5 @@ class Player:
         clips = [clip for clip in self.get_clips()]
         print(frame_count)
         if not clips:
-            return (bytes([0 for x in range(8000)]), pyaudio.paContinue)
+            return (bytes([0 for x in range(frame_count)]), pyaudio.paContinue)
         return (random.choice(clips), pyaudio.paContinue)
