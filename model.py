@@ -24,7 +24,7 @@ class Model:
         x, y = self.v.get_mouse_pos()
         for p in self.points:
             if p.dist(x, y) < self.threshold and p.clips:
-                yield p.clips
+                yield p.clips[self.v.clip_type]
     
 
 
@@ -33,26 +33,15 @@ if __name__=='__main__':
     import pyaudio
 
     p = pyaudio.PyAudio()
-    m = []
+    m = Model()
 
-    #Alice
-    try:
-        for i in range(1, 2):
-            path = "/Volumes/A14SAMGR/TaltekDT2112/Moby/"
-            points = extractor.extract_features(path + "c{}.wav".format(i),
-                                                path + "analysis/c{}.f0".format(i))
-            m+=points
-    except:
-        pass
+    for i in range(1, 137):
+        #Alice
+        path = "/Volumes/A14SAMGR/TaltekDT2112/Moby/"
+        points = extractor.extract_features(path + "c{}.wav".format(i),
+                                            path + "analysis/c{}.f0".format(i))
+        m.add_points(points)    
 
-    pickle.dump(m, open("/Volumes/A14SAMGR/TaltekDT2112/out2.pickle", "wb"))
-    # for i in range(1,4):
-    #     path = "/Volumes/A14SAMGR/TaltekDT2112/Crusoe/"
-    #     points = extractor.extract_features(path + "crusoe0{}.wav".format(i),
-    #                                         path + "Analys/crusoe0{}.f0".format(i))
-    #     m.add_points(points)
-
-    
-    # m.start()
-    # m.v.w.mainloop()
-    
+    m.start()
+    m.v.w.mainloop()
+     
